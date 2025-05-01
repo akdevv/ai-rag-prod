@@ -13,7 +13,13 @@ export default async function Home() {
 
 	return (
 		<main>
-			<header className="border-b border-neutral-700">
+			{/* <div className="bg-blue-400 h-16">navbar</div>
+			<div className="flex flex-1 h-[calc(100vh-4rem)]">
+				<div className="bg-red-400 h-full">sidebar</div>
+				<div className="bg-green-400 h-full flex-1">main</div>
+			</div> */}
+
+			<header className="border-b border-neutral-700 h-16">
 				<nav className="flex justify-between items-center p-3">
 					<h1 className="text-2xl text-accent font-bold flex items-center gap-2">
 						<Image
@@ -30,8 +36,8 @@ export default async function Home() {
 				</nav>
 			</header>
 
-			<section className="flex p-3 gap-3">
-				<div className="bg-red-400 w-1/3">
+			<section className="flex p-3 gap-3 h-[calc(100vh-4rem)]">
+				<div className="w-1/3">
 					<FileUpload />
 				</div>
 				<div className="bg-blue-400 w-2/3">3</div>

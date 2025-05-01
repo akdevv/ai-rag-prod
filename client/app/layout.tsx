@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
+import { FileProvider } from "@/context/file-context";
 
 export const metadata: Metadata = {
 	title: "AI RAG",
@@ -18,7 +20,8 @@ export default function RootLayout({
 				<body
 					className={`antialiased bg-background text-foreground font-bricolage flex flex-col min-h-screen`}
 				>
-					{children}
+					<FileProvider>{children}</FileProvider>
+					<Toaster />
 				</body>
 			</html>
 		</ClerkProvider>
