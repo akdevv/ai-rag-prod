@@ -1,6 +1,5 @@
 import { Worker } from "bullmq";
 import { OllamaEmbeddings } from "@langchain/ollama";
-import { QdrantClient } from "@qdrant/js-client-rest";
 import { QdrantVectorStore } from "@langchain/qdrant";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
@@ -10,8 +9,6 @@ type JobData = {
 	destination: string;
 	path: string;
 };
-
-const qdrantClient = new QdrantClient({ url: "http://localhost:6333" });
 
 const worker = new Worker(
 	"file-upload-queue",
@@ -34,7 +31,6 @@ const worker = new Worker(
 			chunkSize: 1000,
 			chunkOverlap: 200,
 		});
-
 		const texts = await splitter.splitDocuments(docs);
 
 		try {
@@ -67,4 +63,14 @@ const worker = new Worker(
 	}
 );
 
-console.log("Worker started");
+worker.on("completed", (jobId) => {
+	console.log(
+		`Job ${jobId.queueName} completed with result: \n${jobId.data}\n\n`
+	);
+});
+
+worker.on("failed", (jobId) => {
+	console.error(
+		`Job ${jobId?.queueName} failed with error: \n${jobId?.failedReason}\n\n`
+	);
+});

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { UserButton } from "@clerk/nextjs";
 import FileUpload from "@/components/file-upload";
+import Chat from "@/components/chat";
 
 export default async function Home() {
 	const { userId } = await auth();
@@ -13,12 +14,6 @@ export default async function Home() {
 
 	return (
 		<main>
-			{/* <div className="bg-blue-400 h-16">navbar</div>
-			<div className="flex flex-1 h-[calc(100vh-4rem)]">
-				<div className="bg-red-400 h-full">sidebar</div>
-				<div className="bg-green-400 h-full flex-1">main</div>
-			</div> */}
-
 			<header className="border-b border-neutral-700 h-16">
 				<nav className="flex justify-between items-center p-3">
 					<h1 className="text-2xl text-accent font-bold flex items-center gap-2">
@@ -37,10 +32,13 @@ export default async function Home() {
 			</header>
 
 			<section className="flex p-3 gap-3 h-[calc(100vh-4rem)]">
-				<div className="w-1/3">
+				<div className="w-1/4">
 					<FileUpload />
 				</div>
-				<div className="bg-blue-400 w-2/3">3</div>
+
+				<div className="w-3/4 bg-neutral-900 rounded-lg">
+					<Chat />
+				</div>
 			</section>
 		</main>
 	);
