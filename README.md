@@ -10,12 +10,14 @@ A powerful RAG (Retrieval-Augmented Generation) application that allows users to
 - Vector database for efficient document retrieval
 - Queue-based document processing
 - Modern and responsive UI
+- User authentication with Clerk
 
 ## Tech Stack
 
 ### Frontend
 - Next.js - React framework for building the user interface
 - Shadcn - UI component library for a modern design system
+- Clerk - Authentication and user management
 
 ### Backend
 - Express.js - Node.js web application framework
@@ -33,6 +35,7 @@ A powerful RAG (Retrieval-Augmented Generation) application that allows users to
 - Docker and Docker Compose
 - Bun runtime
 - Ollama
+- Clerk account for authentication
 
 ## Local Setup
 
@@ -66,11 +69,15 @@ A powerful RAG (Retrieval-Augmented Generation) application that allows users to
    ```bash
    cd client
    bun install
+   # Create .env file and add Clerk credentials
+   echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your-key>
+   CLERK_SECRET_KEY=<your-key>" > .env
    bun run dev
    ```
 
 5. **Access the Application**
    - Open [http://localhost:3000](http://localhost:3000)
+   - Sign in using Clerk authentication
    - Upload a PDF document
    - Start chatting with the AI about the document content
 
@@ -83,6 +90,7 @@ A powerful RAG (Retrieval-Augmented Generation) application that allows users to
 - **LangChain**: Framework for building LLM applications with RAG capabilities
 - **Multer**: Middleware for handling multipart/form-data (file uploads)
 - **QdrantDB**: Vector similarity search engine for storing and retrieving embeddings
+- **Clerk**: Authentication and user management platform
 
 ## Credits
 
